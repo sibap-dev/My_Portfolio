@@ -2,11 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Portfolio{% endblock %}</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Siba's Portfolio{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,81 +13,144 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to right, #f2f9ff, #ffffff);
-            color: #2c3e50;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-30px) rotate(120deg); }
+            66% { transform: translateY(30px) rotate(240deg); }
         }
 
         nav {
-            background: linear-gradient(to right, #0d47a1, #1976d2);
-            padding: 15px 30px;
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
-            z-index: 999;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
         }
 
         .nav-logo {
             color: #ffffff;
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 1.8rem;
+            font-weight: 700;
             text-decoration: none;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-logo::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
 
         .nav-links {
             display: flex;
-            gap: 25px;
-            flex-wrap: wrap;
-            justify-content: center;
+            gap: 30px;
+            align-items: center;
         }
 
         .nav-links a {
             color: #ffffff;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
             font-size: 1.1rem;
+            padding: 12px 24px;
+            border-radius: 50px;
             position: relative;
-            padding: 6px 8px;
-            border-radius: 6px;
-            transition: background 0.3s, color 0.3s;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .nav-links a::after {
+        .nav-links a::before {
             content: '';
             position: absolute;
-            width: 0%;
-            height: 2px;
-            left: 0;
-            bottom: -4px;
-            background-color: white;
-            transition: width 0.3s ease;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            transition: left 0.5s ease;
+            z-index: -1;
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
+        .nav-links a:hover::before {
+            left: 0;
         }
 
         .nav-links a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: #bbdefb;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            color: #ffffff;
+        }
+
+        .nav-links a.active {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
         .content {
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 0 20px;
-            animation: fadeIn 0.6s ease-in-out;
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 40px;
+            animation: slideUp 0.8s ease-out;
         }
 
-        @keyframes fadeIn {
+        @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(50px);
             }
             to {
                 opacity: 1;
@@ -100,32 +161,78 @@
         @media (max-width: 768px) {
             nav {
                 flex-direction: column;
-                align-items: flex-start;
+                padding: 20px;
+                gap: 20px;
             }
 
             .nav-links {
-                flex-direction: column;
-                width: 100%;
-                gap: 10px;
-                margin-top: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
             }
 
             .nav-links a {
                 font-size: 1rem;
-                padding: 8px 12px;
+                padding: 10px 20px;
             }
+
+            .content {
+                padding: 0 20px;
+                margin: 40px auto;
+            }
+        }
+
+        .floating-elements {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-elements::before,
+        .floating-elements::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float-random 15s infinite ease-in-out;
+        }
+
+        .floating-elements::before {
+            top: 20%;
+            left: 10%;
+            animation-delay: -5s;
+        }
+
+        .floating-elements::after {
+            top: 70%;
+            right: 10%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float-random {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            25% { transform: translateY(-20px) translateX(10px); }
+            50% { transform: translateY(20px) translateX(-10px); }
+            75% { transform: translateY(-10px) translateX(20px); }
         }
     </style>
 </head>
 <body>
-
+    <div class="floating-elements"></div>
+    
     <nav>
-        <div class="nav-logo">Siba's Portfolio</div>
+        <a href="{{ url_for('home') }}" class="nav-logo">Siba's Portfolio</a>
         <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/about">About</a>
-            <a href="/projects">Projects</a>
-            <a href="/contact">Contact</a>
+            <a href="{{ url_for('home') }}" class="{% if request.endpoint == 'home' %}active{% endif %}">Home</a>
+            <a href="{{ url_for('about') }}" class="{% if request.endpoint == 'about' %}active{% endif %}">About</a>
+            <a href="{{ url_for('projects') }}" class="{% if request.endpoint == 'projects' %}active{% endif %}">Projects</a>
+            <a href="{{ url_for('contact') }}" class="{% if request.endpoint == 'contact' %}active{% endif %}">Contact</a>
         </div>
     </nav>
 
@@ -133,5 +240,33 @@
         {% block content %}{% endblock %}
     </div>
 
+    <script>
+        // Add smooth page transitions
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('nav a[href^="/"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    this.style.opacity = '0.7';
+                    setTimeout(() => {
+                        this.style.opacity = '1';
+                    }, 200);
+                });
+            });
+        });
+
+        // Add hover effect enhancement
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.05)';
+            });
+            
+            link.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('active')) {
+                    this.style.transform = 'translateY(0) scale(1)';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
