@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+{% block title %}Projects - Portfolio{% endblock %}
+{% block content %}
+
+<style>
+    .projects-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+        padding: 20px;
+    }
+
+    .project {
+        background: #ffffff;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .project h3 {
+        color: #0d47a1;
+        margin-bottom: 10px;
+    }
+
+    .project p {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 8px;
+    }
+
+    .project a {
+        display: inline-block;
+        margin-top: 8px;
+        margin-right: 10px;
+        padding: 8px 14px;
+        background-color: #1976d2;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        transition: background-color 0.3s ease;
+    }
+
+    .project a:hover {
+        background-color: #0d47a1;
+    }
+</style>
+
+<h2 style="text-align:center; color:#0d47a1; margin-bottom: 30px;">My Projects</h2>
+
+<div class="projects-container">
+    <div class="project">
+        <h3>Netflix Clone</h3>
+        <p>A front-end clone of Netflix using HTML and CSS.</p>
+        <p><strong>Tech Stack:</strong> HTML, CSS</p>
+        <a href="https://github.com/sibap-dev/Netflix_clone" target="_blank">GitHub</a>
+        <a href="https://sibap-dev.github.io/Netflix_clone/" target="_blank">Live Demo</a>
+    </div>
+
+    <div class="project">
+        <h3>Tribute Page</h3>
+        <p>A tribute page using clean HTML and CSS design.</p>
+        <p><strong>Tech Stack:</strong> HTML, CSS</p>
+        <a href="https://github.com/sibap-dev/Tribute_page" target="_blank">GitHub</a>
+    </div>
+
+    <div class="project">
+        <h3>YouTube Video Downloader</h3>
+        <p>Web tool to download YouTube videos using Flask.</p>
+        <p><strong>Tech Stack:</strong> Flask, HTML</p>
+        <a href="https://github.com/sibap-dev/Youtube-download-main" target="_blank">GitHub</a>
+    </div>
+
+    <div class="project">
+        <h3>Online Calculator App</h3>
+        <p>Functional calculator web app deployed via Render.</p>
+        <p><strong>Tech Stack:</strong> Flask, HTML, CSS</p>
+        <a href="https://github.com/sibap-dev/Task_internship" target="_blank">GitHub</a>
+        <a href="https://siba-calculator.onrender.com/" target="_blank">Live Demo</a>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+{% block title %}About - Portfolio{% endblock %}
+{% block content %}
+
+<style>
+    .about-container {
+        background: #fff;
+        padding: 40px 20px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        max-width: 900px;
+        margin: auto;
+    }
+
+    .about-container h2 {
+        text-align: center;
+        color: #0d47a1;
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .about-container p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        text-align: center;
+    }
+
+    .about-container h3 {
+        margin-top: 30px;
+        text-align: center;
+        color: #1976d2;
+    }
+
+    .about-container ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 20px;
+        max-width: 700px;
+        margin-inline: auto;
+    }
+
+    .about-container li {
+        background: #f0f8ff;
+        padding: 15px;
+        border-left: 5px solid #0d47a1;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        transition: 0.3s ease;
+    }
+
+    .about-container li:hover {
+        background: #e3f2fd;
+    }
+
+    .resume-link {
+        display: block;
+        text-align: center;
+        margin-top: 30px;
+        text-decoration: none;
+        background-color: #1976d2;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-weight: bold;
+        width: fit-content;
+        margin-inline: auto;
+        transition: 0.3s ease;
+    }
+
+    .resume-link:hover {
+        background-color: #0d47a1;
+    }
+</style>
+
+<div class="about-container">
+    <h2>About Me</h2>
+    <p>I am currently a student at NIST University, passionate about development and programming.</p>
+
+    <h3>Achievement Highlights</h3>
+    <ul>
+        <li>Attended a 2-day workshop on <strong>AI and Machine Learning with Data Science</strong> at <strong>IIT Bhubaneswar</strong>.</li>
+        <li>Completed an internship on <strong>Advanced Programming and Competitive Coding</strong> at <strong>NIST University</strong>.</li>
+        <li>Worked as a <strong>Python Developer Intern</strong> at <strong>Asirudh Software Private Limited</strong>.</li>
+    </ul>
+
+    <a class="resume-link" href="{{ url_for('static', filename='resume.pdf') }}" target="_blank">Download Resume</a>
+</div>
+
+{% endblock %}
