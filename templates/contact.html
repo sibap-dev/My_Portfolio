@@ -1,8 +1,77 @@
-{% extends "base.html" %}
+{% extends "layout.html" %}
 {% block title %}Contact - Portfolio{% endblock %}
 {% block content %}
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(to right, #e0f7fa, #ffffff);
+        color: #2c3e50;
+        padding: 40px 20px;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        color: #0077b6;
+        margin-bottom: 40px;
+    }
+
+    .contact-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        max-width: 600px;
+        margin: auto;
+    }
+
+    .contact-card {
+        background: #ffffff;
+        border-left: 5px solid #0077b6;
+        padding: 20px 25px;
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .contact-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-card a {
+        text-decoration: none;
+        color: #0077b6;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+    .contact-card a:hover {
+        color: #023e8a;
+    }
+
+    .icon {
+        margin-right: 10px;
+        font-size: 1.2rem;
+    }
+</style>
+
 <h2>Contact Me</h2>
-<p><strong>Email:</strong> siba94372@gmail.com</p>
-<p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/siba-prasad-padhi-197b61320/" target="_blank">Siba Prasad Padhi</a></p>
-<p><strong>GitHub:</strong> <a href="https://github.com/sibap-dev" target="_blank">sibap-dev</a></p>
+
+<div class="contact-container">
+    <div class="contact-card">
+        <span class="icon">📧</span>Email: <strong>siba94372@gmail.com</strong>
+    </div>
+
+    <div class="contact-card">
+        <span class="icon">💼</span>LinkedIn: 
+        <a href="https://www.linkedin.com/in/siba-prasad-padhi-197b61320/" target="_blank">Siba Prasad Padhi</a>
+    </div>
+
+    <div class="contact-card">
+        <span class="icon">💻</span>GitHub: 
+        <a href="https://github.com/sibap-dev" target="_blank">sibap-dev</a>
+    </div>
+</div>
 {% endblock %}
