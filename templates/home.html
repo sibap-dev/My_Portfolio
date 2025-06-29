@@ -449,18 +449,21 @@
         <div class="home-text">
             <div class="greeting">Welcome to my world</div>
             <h1>Hi, I'm Siba Prasad</h1>
+        </div>
+
+            <div class="home-image">
+                <div class="image-container">
+                    <img src="{{ url_for('static', filename='profile.jpg') }}" alt="Siba Prasad Padhi - Developer">
+                </div>
+            </div>
+        
+        <div class="home-text">
             <div class="subtitle">Passionate Developer & Creative Thinker</div>
             <p>I'm a dedicated developer and student who loves crafting innovative web applications, exploring cutting-edge technologies, and sharing my creative journey with the world. Let's build something amazing together!</p>
-            
+                
             <div class="cta-buttons">
                 <a href="projects" class="btn btn-primary">View My Work</a>
                 <a href="contact" class="btn btn-secondary">Get In Touch</a>
-            </div>
-        </div>
-        
-        <div class="home-image">
-            <div class="image-container">
-                <img src="{{ url_for('static', filename='profile.jpg') }}" alt="Siba Prasad Padhi - Developer">
             </div>
         </div>
     </div>
