@@ -157,7 +157,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             background-size: 200% 200%;
-            animation: logoGlow 3s ease infinite, wordCycle 8s infinite;
+            animation: logoGlow 3s ease infinite, wordCycle 10s infinite;
             white-space: nowrap;
         }
 
@@ -165,6 +165,7 @@
         .tech-word:nth-child(2) { animation-delay: 2s; }
         .tech-word:nth-child(3) { animation-delay: 4s; }
         .tech-word:nth-child(4) { animation-delay: 6s; }
+        .tech-word:nth-child(5) { animation-delay: 8s; }
 
         @keyframes wordCycle {
             0%, 15% { opacity: 0; transform: translateY(10px) scale(0.9); }
@@ -570,9 +571,10 @@
             <a href="{{ url_for('home') }}" class="nav-logo">Siba</a>
             <div class="tech-words">
                 <span class="tech-word">Web Developer</span>
+                <span class="tech-word">Back-End Developer</span>
                 <span class="tech-word">Full Stack Developer</span>
                 <span class="tech-word">UI/UX Designer</span>
-                <span class="tech-word">Software Engineer</span>
+                <span class="tech-word">Technical Lead</span>
             </div>
         </div>
         <div class="nav-links" id="navLinks">
@@ -593,12 +595,12 @@
         {% block content %}
         <div style="text-align: center; padding: 60px 0;">
             <h1 style="font-size: 3rem; margin-bottom: 20px;">Welcome to My Portfolio</h1>
-            <p style="font-size: 1.2rem;">Experience the vibrant animations and smooth interactions!</p>
         </div>
         {% endblock %}
     </div>
 
     <script>
+        // Theme toggle functionality
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
 
@@ -619,7 +621,31 @@
             setTimeout(() => this.style.transform = 'scale(1)', 150);
         });
 
+        // Mobile menu toggle functionality
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuToggle.addEventListener('click', function() {
+            // Toggle the hamburger animation
+            this.classList.toggle('active');
+            
+            // Toggle the navigation menu
+            navLinks.classList.toggle('show');
+            
+            // Add a small animation to the toggle button
+            this.style.transform = 'scale(0.9)';
+            setTimeout(() => this.style.transform = 'scale(1)', 150);
+        });
+
+        // Close mobile menu when clicking on a link
         document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                // Close mobile menu when a link is clicked
+                navLinks.classList.remove('show');
+                mobileMenuToggle.classList.remove('active');
+            });
+            
+            // Existing hover animations
             link.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-2px) scale(1.05)';
             });
@@ -631,6 +657,26 @@
             });
         });
 
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const isClickInsideNav = navLinks.contains(event.target) || mobileMenuToggle.contains(event.target);
+            
+            if (!isClickInsideNav && navLinks.classList.contains('show')) {
+                navLinks.classList.remove('show');
+                mobileMenuToggle.classList.remove('active');
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                // Reset mobile menu state on desktop
+                navLinks.classList.remove('show');
+                mobileMenuToggle.classList.remove('active');
+            }
+        });
+
+        // Intersection Observer for content animation
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
