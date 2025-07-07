@@ -162,6 +162,10 @@
         background: linear-gradient(135deg, #333, #000);
     }
 
+    .form-card .icon-wrapper {
+        background: linear-gradient(135deg, #4ade80, #22d3ee);
+    }
+
     .icon {
         font-size: 1.5rem;
         color: white;
@@ -206,6 +210,141 @@
 
     .contact-card:hover a::after {
         width: 100%;
+    }
+
+    /* Contact Form Styles */
+    .contact-form {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 40px;
+        width: 100%;
+        max-width: 600px;
+        animation: fadeInUp 1s ease-out 0.2s both;
+    }
+
+    .form-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: white;
+        margin-bottom: 20px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        display: block;
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 500;
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .form-input,
+    .form-textarea {
+        width: 100%;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        color: white;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+        outline: none;
+        border-color: #4ade80;
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.2);
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .form-textarea {
+        resize: vertical;
+        min-height: 120px;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(135deg, #4ade80, #22d3ee);
+        border: none;
+        border-radius: 12px;
+        color: white;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .submit-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s;
+    }
+
+    .submit-btn:hover::before {
+        left: 100%;
+    }
+
+    .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(74, 222, 128, 0.3);
+    }
+
+    .submit-btn:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    .form-status {
+        margin-top: 15px;
+        padding: 12px;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: 500;
+        display: none;
+    }
+
+    .form-status.success {
+        background: rgba(74, 222, 128, 0.2);
+        color: #4ade80;
+        border: 1px solid rgba(74, 222, 128, 0.3);
+    }
+
+    .form-status.error {
+        background: rgba(239, 68, 68, 0.2);
+        color: #ef4444;
+        border: 1px solid rgba(239, 68, 68, 0.3);
     }
 
     .contact-floating-elements {
@@ -299,10 +438,11 @@
 
     @media (max-width: 768px) {
         .contact-main-container {
-            padding: 20px 0;
+            padding: 20px;
         }
 
-        .contact-card {
+        .contact-card,
+        .contact-form {
             padding: 25px;
         }
 
@@ -314,6 +454,14 @@
 
         .icon {
             font-size: 1.2rem;
+        }
+
+        .contact-title {
+            font-size: 2.5rem;
+        }
+
+        .form-title {
+            font-size: 1.5rem;
         }
     }
 </style>
@@ -330,16 +478,51 @@
         <p class="subtitle">Ready to collaborate<span class="pulse-dot"></span></p>
     </div>
 
+    <!-- Contact Form -->
+    <form class="contact-form" id="contactForm">
+        <h3 class="form-title">
+            <i class="fas fa-paper-plane"></i>
+            Send Message
+        </h3>
+        
+        <div class="form-group">
+            <label class="form-label" for="from_name">Your Name</label>
+            <input type="text" class="form-input" id="from_name" name="from_name" placeholder="Enter your name" required>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label" for="reply_to">Your Email</label>
+            <input type="email" class="form-input" id="reply_to" name="reply_to" placeholder="Enter your email" required>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label" for="subject">Subject</label>
+            <input type="text" class="form-input" id="subject" name="subject" placeholder="What's this about?" required>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label" for="message">Message</label>
+            <textarea class="form-textarea" id="message" name="message" placeholder="Tell me about your project or idea..." required></textarea>
+        </div>
+        
+        <button type="submit" class="submit-btn" id="submitBtn">
+            <i class="fas fa-paper-plane"></i>
+            Send Message
+        </button>
+        
+        <div class="form-status" id="formStatus"></div>
+    </form>
+
     <div class="contact-container">
         <div class="contact-card email-card">
-            <a href="mailto:siba94372@gmail.com">
+            <a href="mailto:sibapra729@gmail.com">
                 <div class="card-content">
                     <div class="icon-wrapper">
                         <i class="fas fa-envelope icon"></i>
                     </div>
                     <div class="card-text">
                         <div class="card-label">Email Address</div>
-                        <div class="card-value">siba94372@gmail.com</div>
+                        <div class="card-value">sibapra729@gmail.com</div>
                     </div>
                 </div>
             </a>
@@ -377,7 +560,7 @@
     <div class="cta-section">
         <p class="cta-text">Let's build something amazing together</p>
         <div class="social-links">
-            <a href="mailto:siba94372@gmail.com" class="social-link">
+            <a href="mailto:sibapra729@gmail.com" class="social-link">
                 <i class="fas fa-envelope"></i>
             </a>
             <a href="https://www.linkedin.com/in/siba-prasad-padhi-197b61320/" target="_blank" class="social-link">
@@ -389,6 +572,15 @@
         </div>
     </div>
 </div>
+
+<!-- EmailJS SDK -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script type="text/javascript">
+    // Initialize EmailJS
+    (function(){
+        emailjs.init("aIcv1BoxKtWkcDo4D"); // Replace with your EmailJS public key
+    })();
+</script>
 
 <script>
     // Add smooth scroll behavior and enhanced interactions
@@ -451,6 +643,63 @@
                 const moveX = (mouseX - 0.5) * (20 + index * 10);
                 const moveY = (mouseY - 0.5) * (20 + index * 10);
                 element.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            });
+        });
+
+        // Contact Form Handler with Auto-Reply
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const formStatus = document.getElementById('formStatus');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            formStatus.style.display = 'none';
+
+            // Get form data
+            const formData = new FormData(this);
+            const templateParams = {
+                from_name: formData.get('from_name'),
+                reply_to: formData.get('reply_to'),
+                subject: formData.get('subject'),
+                message: formData.get('message')
+            };
+
+            // Send both emails using Promise.all
+            Promise.all([
+                // 1. Send message to you (existing template)
+                emailjs.send('service_uirslvs', 'template_kazgc15', templateParams),
+                
+                // 2. Send auto-reply to user (new template - UPDATE THIS TEMPLATE ID)
+                
+            ])
+            .then(function(responses) {
+                console.log('Both emails sent successfully!', responses);
+                
+                // Show success message
+                formStatus.className = 'form-status success';
+                formStatus.textContent = 'Message sent successfully! Check your email for confirmation.';
+                formStatus.style.display = 'block';
+                
+                // Reset form
+                contactForm.reset();
+                
+            })
+            .catch(function(error) {
+                console.log('Error sending emails:', error);
+                
+                // Show error message
+                formStatus.className = 'form-status error';
+                formStatus.textContent = 'Failed to send message. Please try again or contact me directly.';
+                formStatus.style.display = 'block';
+            })
+            .finally(function() {
+                // Reset button state
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
             });
         });
     });
