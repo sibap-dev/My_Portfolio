@@ -16,5 +16,6 @@
 - 🌐 HTML, CSS, Jinja2
 - 🎨 Custom Responsive Design
 - 🚀 Deployed on [Render](https://sibas-portfolio.onrender.com/)
-
+- 🚀 Deployed on [Vercel](https://sibasportfolio.vercel.app/) for Fast Opening
+  
 ---
